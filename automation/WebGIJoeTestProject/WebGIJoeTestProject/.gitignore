@@ -1,0 +1,88 @@
+# Visual Studio files
+.vscode/
+.vs/
+/bin/
+/obj/
+*.user
+*.suo
+*.sln.docstates
+
+# NUnit test results
+TestResult.xml
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio Code folders
+.vscode/
+
+# User-specific files
+*.suo
+*.user
+
+# Rider folders
+.idea/
+.ideaContent/
+
+# User-specific files
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/vcs.xml
+
+# User-specific files
+.idea/inspectionProfiles/
+.idea/dictionaries
+
+# Visual Studio for Mac
+.vscode/
+
+# Rider folders
+.idea/
+.ideaContent/
+
+# User-specific files
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/vcs.xml
+.idea/.idea.vc.iml
+
+# User-specific files
+.idea/inspectionProfiles/
+.idea/dictionaries
+.idea/.idea.vc.iml
+.idea/testData/
+.idea/shelf/
+.idea/site/
+
+# User-specific files
+.idea/inspectionProfiles/
+.idea/dictionaries
+.idea/.idea.vc.iml
+.idea/testData/
+.idea/shelf/
+.idea/site/
+.idea/webResources.xml
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# Visual Studio 2019 directories
+.vs2019/
