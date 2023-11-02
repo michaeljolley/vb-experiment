@@ -4,59 +4,34 @@ using NUnit.Framework.Internal;
 using DotNetEnv;
 using VbGIJoeTestProject;
 using NUnit.Framework;
+using System.Diagnostics;
+using VbGIJoeTestProject.Base;
 
 namespace Tests;
 
 [TestFixture]
-public class VbGIJoeTests
-{
-    private WindowsDriver<WindowsElement> _driver;
-    private VbGIJoeMainView _GIJoeMainView;
+public class VbGIJoeTests : BaseTest
+{ 
 
-    [OneTimeSetUp]
-    public void LoadEnvironmentVariables()
-    {
-        // Load environment variables from .env file
-        Env.TraversePath().Load(); 
-    }
-
-    [SetUp]
-    public void TestInit()
-    {
-        var options = new AppiumOptions();
-        options.AddAdditionalCapability("app", $@"{ProjectConfig.VbGiJoeAppPath}");
-        options.AddAdditionalCapability("deviceName", $"{ProjectConfig.DeviceName}");
-        _driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), options);
-        _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-        _GIJoeMainView = new VbGIJoeMainView(_driver);
-    }
-
-    [TearDown]
-    public void TestCleanup()
-    {
-        if (_driver != null)
-        {
-            _driver.Quit();
-            _driver = null;
-        }
-    }
 
     [Test]
     public void VerifyLoadButtonAction()
     {
-        _GIJoeMainView.ClickOnLoadDataButton();
-        Assert.IsTrue(_GIJoeMainView.DownloadedRecordsLabelIsDisplayed(), "The Downloaded label is not visible", "The Downloaded label is visible");
-        _GIJoeMainView.ClickOnOkButton();
-        Assert.False(_GIJoeMainView.DownloadedRecordsLabelIsDisplayed(), "The Downloaded label is visible", "The Downloaded label is not visible");
+        VbGIJoeMainView GIJoeMainView = new VbGIJoeMainView(GetDriver());
+        GIJoeMainView.ClickOnLoadDataButton();
+        Assert.IsTrue(GIJoeMainView.DownloadedRecordsLabelIsDisplayed(), "The Downloaded label is not visible", "The Downloaded label is visible");
+        GIJoeMainView.ClickOnOkButton();
+        Assert.False(GIJoeMainView.DownloadedRecordsLabelIsDisplayed(), "The Downloaded label is visible", "The Downloaded label is not visible");
     }
 
     [Test]
     public void VerifyNextButtonAction()
     {
-        string name1 = _GIJoeMainView.GetTextFromNameInput();
+        VbGIJoeMainView GIJoeMainView = new VbGIJoeMainView(GetDriver());
+        string name1 = GIJoeMainView.GetTextFromNameInput();
         Console.WriteLine("Name value first time: " + name1);
-        _GIJoeMainView.ClickOnNextButton();
-        string name2 = _GIJoeMainView.GetTextFromNameInput();
+        GIJoeMainView.ClickOnNextButton();
+        string name2 = GIJoeMainView.GetTextFromNameInput();
         Console.WriteLine("Name value after click on next button: " + name2);
         Assert.AreNotEqual(name2, name1);
     }
@@ -64,15 +39,16 @@ public class VbGIJoeTests
     [Test]
     public void VerifyNextButtonChangesAllegiance()
     {
-        string allegiance1 = _GIJoeMainView.GetTextFromAllegianceInput();
+        VbGIJoeMainView GIJoeMainView = new VbGIJoeMainView(GetDriver());
+        string allegiance1 = GIJoeMainView.GetTextFromAllegianceInput();
         string allegiance2 = "";
         Console.WriteLine("Allegiance value first time: " + allegiance1);
         int tries = 5;
 
         while (tries-- > 0)
         {
-            _GIJoeMainView.ClickOnNextButton();
-            allegiance2 = _GIJoeMainView.GetTextFromAllegianceInput();
+            GIJoeMainView.ClickOnNextButton();
+            allegiance2 = GIJoeMainView.GetTextFromAllegianceInput();
             if (allegiance1 != allegiance2)
             {
                 break;

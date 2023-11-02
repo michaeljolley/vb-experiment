@@ -43,17 +43,20 @@ public partial class VbGIJoeMainView
 
     public static bool IsDisplayed(WindowsElement element)
     {
+        bool isDisplayed = false;
         try
         {
-            return element.Displayed;
+            isDisplayed = element.Displayed;
         }
         catch (Exception)
         {
             return false;
         }
+
+        return isDisplayed;
     }
 
-    public WindowsElement findElementByXpath(string xpath)
+    public WindowsElement? findElementByXpath(string xpath)
     {
         try
         {

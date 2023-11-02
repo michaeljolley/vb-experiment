@@ -13,6 +13,9 @@ https://github.com/Microsoft/WinAppDriver/releases
 Before running the test cases you will need to open this service
 C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe
 
+
 4- Open the solution on visual studio and find the VbGIJoeTests class, this class contains the automation test cases
 
 5- Edit the .env file with the correct path
+	Add the WinAppDriver path to the env file
+
